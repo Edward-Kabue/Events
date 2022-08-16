@@ -22,6 +22,7 @@ model User {
 model EventOrganizer {
   bankAccount Float?
   createdAt   DateTime @default(now())
+  events      Event[]
   firstname   String?
   id          String   @id @default(cuid())
   lastname    String?
@@ -46,4 +47,15 @@ model Ticket {
   eventIdId String?
   id        String          @id @default(cuid())
   updatedAt DateTime        @updatedAt
+}
+
+model Event {
+  createdAt        DateTime        @default(now())
+  dates            DateTime?
+  eventOrganizer   EventOrganizer? @relation(fields: [eventOrganizerId], references: [id])
+  eventOrganizerId String?
+  featured         Boolean?
+  id               String          @id @default(cuid())
+  price            Float?
+  updatedAt        DateTime        @updatedAt
 }

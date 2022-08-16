@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
+import { EventListRelationFilter } from "../../event/base/EventListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
@@ -30,6 +31,18 @@ class EventOrganizerWhereInput {
     nullable: true,
   })
   bankAccount?: FloatNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => EventListRelationFilter)
+  @IsOptional()
+  @Field(() => EventListRelationFilter, {
+    nullable: true,
+  })
+  events?: EventListRelationFilter;
 
   @ApiProperty({
     required: false,
