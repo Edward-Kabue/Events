@@ -19,34 +19,31 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateEventOrganizerArgs } from "./CreateEventOrganizerArgs";
-import { UpdateEventOrganizerArgs } from "./UpdateEventOrganizerArgs";
-import { DeleteEventOrganizerArgs } from "./DeleteEventOrganizerArgs";
-import { EventOrganizerFindManyArgs } from "./EventOrganizerFindManyArgs";
-import { EventOrganizerFindUniqueArgs } from "./EventOrganizerFindUniqueArgs";
-import { EventOrganizer } from "./EventOrganizer";
-import { EventFindManyArgs } from "../../event/base/EventFindManyArgs";
-import { Event } from "../../event/base/Event";
-import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
-import { Ticket } from "../../ticket/base/Ticket";
-import { EventOrganizerService } from "../eventOrganizer.service";
+import { CreateEventArgs } from "./CreateEventArgs";
+import { UpdateEventArgs } from "./UpdateEventArgs";
+import { DeleteEventArgs } from "./DeleteEventArgs";
+import { EventFindManyArgs } from "./EventFindManyArgs";
+import { EventFindUniqueArgs } from "./EventFindUniqueArgs";
+import { Event } from "./Event";
+import { EventOrganizer } from "../../eventOrganizer/base/EventOrganizer";
+import { EventService } from "../event.service";
 
-@graphql.Resolver(() => EventOrganizer)
+@graphql.Resolver(() => Event)
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-export class EventOrganizerResolverBase {
+export class EventResolverBase {
   constructor(
-    protected readonly service: EventOrganizerService,
+    protected readonly service: EventService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "read",
     possession: "any",
   })
-  async _eventOrganizersMeta(
-    @graphql.Args() args: EventOrganizerFindManyArgs
+  async _eventsMeta(
+    @graphql.Args() args: EventFindManyArgs
   ): Promise<MetaQueryPayload> {
     const results = await this.service.count({
       ...args,
@@ -59,28 +56,26 @@ export class EventOrganizerResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [EventOrganizer])
+  @graphql.Query(() => [Event])
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "read",
     possession: "any",
   })
-  async eventOrganizers(
-    @graphql.Args() args: EventOrganizerFindManyArgs
-  ): Promise<EventOrganizer[]> {
+  async events(@graphql.Args() args: EventFindManyArgs): Promise<Event[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => EventOrganizer, { nullable: true })
+  @graphql.Query(() => Event, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "read",
     possession: "own",
   })
-  async eventOrganizer(
-    @graphql.Args() args: EventOrganizerFindUniqueArgs
-  ): Promise<EventOrganizer | null> {
+  async event(
+    @graphql.Args() args: EventFindUniqueArgs
+  ): Promise<Event | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -89,35 +84,49 @@ export class EventOrganizerResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => EventOrganizer)
+  @graphql.Mutation(() => Event)
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "create",
     possession: "any",
   })
-  async createEventOrganizer(
-    @graphql.Args() args: CreateEventOrganizerArgs
-  ): Promise<EventOrganizer> {
+  async createEvent(@graphql.Args() args: CreateEventArgs): Promise<Event> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        eventOrganizer: args.data.eventOrganizer
+          ? {
+              connect: args.data.eventOrganizer,
+            }
+          : undefined,
+      },
     });
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => EventOrganizer)
+  @graphql.Mutation(() => Event)
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "update",
     possession: "any",
   })
-  async updateEventOrganizer(
-    @graphql.Args() args: UpdateEventOrganizerArgs
-  ): Promise<EventOrganizer | null> {
+  async updateEvent(
+    @graphql.Args() args: UpdateEventArgs
+  ): Promise<Event | null> {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          eventOrganizer: args.data.eventOrganizer
+            ? {
+                connect: args.data.eventOrganizer,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -129,15 +138,15 @@ export class EventOrganizerResolverBase {
     }
   }
 
-  @graphql.Mutation(() => EventOrganizer)
+  @graphql.Mutation(() => Event)
   @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
+    resource: "Event",
     action: "delete",
     possession: "any",
   })
-  async deleteEventOrganizer(
-    @graphql.Args() args: DeleteEventOrganizerArgs
-  ): Promise<EventOrganizer | null> {
+  async deleteEvent(
+    @graphql.Args() args: DeleteEventArgs
+  ): Promise<Event | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -151,42 +160,20 @@ export class EventOrganizerResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Event])
+  @graphql.ResolveField(() => EventOrganizer, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Event",
+    resource: "EventOrganizer",
     action: "read",
     possession: "any",
   })
-  async events(
-    @graphql.Parent() parent: EventOrganizer,
-    @graphql.Args() args: EventFindManyArgs
-  ): Promise<Event[]> {
-    const results = await this.service.findEvents(parent.id, args);
+  async eventOrganizer(
+    @graphql.Parent() parent: Event
+  ): Promise<EventOrganizer | null> {
+    const result = await this.service.getEventOrganizer(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Ticket])
-  @nestAccessControl.UseRoles({
-    resource: "Ticket",
-    action: "read",
-    possession: "any",
-  })
-  async tickets(
-    @graphql.Parent() parent: EventOrganizer,
-    @graphql.Args() args: TicketFindManyArgs
-  ): Promise<Ticket[]> {
-    const results = await this.service.findTickets(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
+    return result;
   }
 }
