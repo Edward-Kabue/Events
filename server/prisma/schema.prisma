@@ -47,3 +47,10 @@ model Ticket {
   id        String          @id @default(cuid())
   updatedAt DateTime        @updatedAt
 }
+
+model Event {
+  createdAt DateTime  @default(now())
+  dates     DateTime?
+  id        String    @id @default(cuid())
+  updatedAt DateTime  @updatedAt
+}
