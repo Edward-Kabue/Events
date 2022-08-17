@@ -1,9 +1,12 @@
+import { EventUpdateManyWithoutEventOrganizersInput } from "./EventUpdateManyWithoutEventOrganizersInput";
 import { TicketUpdateManyWithoutEventOrganizersInput } from "./TicketUpdateManyWithoutEventOrganizersInput";
 
 export type EventOrganizerUpdateInput = {
-  bankAccount?: number | null;
-  firstname?: string | null;
-  lastname?: string | null;
-  phoneNumber?: number | null;
+  email?: string | null;
+  events?: EventUpdateManyWithoutEventOrganizersInput;
+  firstName?: string | null;
+  lastName?: string | null;
+  payments?: string | null;
   tickets?: TicketUpdateManyWithoutEventOrganizersInput;
+  username?: string | null;
 };
