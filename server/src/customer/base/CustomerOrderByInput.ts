@@ -43,7 +43,7 @@ class CustomerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  firstname?: SortOrder;
+  firstNamr?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +61,7 @@ class CustomerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastname?: SortOrder;
+  lastName?: SortOrder;
 
   @ApiProperty({
     required: false,
