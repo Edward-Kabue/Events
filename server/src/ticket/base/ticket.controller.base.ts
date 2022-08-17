@@ -49,22 +49,36 @@ export class TicketControllerBase {
       data: {
         ...data,
 
-        eventId: data.eventId
+        eventOrganizer: data.eventOrganizer
           ? {
-              connect: data.eventId,
+              connect: data.eventOrganizer,
+            }
+          : undefined,
+
+        price: data.price
+          ? {
+              connect: data.price,
             }
           : undefined,
       },
       select: {
         createdAt: true,
+        eventId: true,
 
-        eventId: {
+        eventOrganizer: {
           select: {
             id: true,
           },
         },
 
         id: true,
+
+        price: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -86,14 +100,22 @@ export class TicketControllerBase {
       ...args,
       select: {
         createdAt: true,
+        eventId: true,
 
-        eventId: {
+        eventOrganizer: {
           select: {
             id: true,
           },
         },
 
         id: true,
+
+        price: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -116,14 +138,22 @@ export class TicketControllerBase {
       where: params,
       select: {
         createdAt: true,
+        eventId: true,
 
-        eventId: {
+        eventOrganizer: {
           select: {
             id: true,
           },
         },
 
         id: true,
+
+        price: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -155,22 +185,36 @@ export class TicketControllerBase {
         data: {
           ...data,
 
-          eventId: data.eventId
+          eventOrganizer: data.eventOrganizer
             ? {
-                connect: data.eventId,
+                connect: data.eventOrganizer,
+              }
+            : undefined,
+
+          price: data.price
+            ? {
+                connect: data.price,
               }
             : undefined,
         },
         select: {
           createdAt: true,
+          eventId: true,
 
-          eventId: {
+          eventOrganizer: {
             select: {
               id: true,
             },
           },
 
           id: true,
+
+          price: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -201,14 +245,22 @@ export class TicketControllerBase {
         where: params,
         select: {
           createdAt: true,
+          eventId: true,
 
-          eventId: {
+          eventOrganizer: {
             select: {
               id: true,
             },
           },
 
           id: true,
+
+          price: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });

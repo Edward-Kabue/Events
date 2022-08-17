@@ -43,7 +43,7 @@ class Customer {
   @Field(() => String, {
     nullable: true,
   })
-  firstname!: string | null;
+  firstNamr!: string | null;
 
   @ApiProperty({
     required: true,
@@ -62,7 +62,7 @@ class Customer {
   @Field(() => String, {
     nullable: true,
   })
-  lastname!: string | null;
+  lastName!: string | null;
 
   @ApiProperty({
     required: false,

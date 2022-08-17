@@ -12,9 +12,9 @@ export const CustomerCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Email" source="email" type="email" />
-        <TextInput label="Firstname" source="firstname" />
-        <TextInput label="Lastname" source="lastname" />
-        <NumberInput step={1} label="Phone number" source="phoneNumber" />
+        <TextInput label="First Name" source="firstNamr" />
+        <TextInput label="Last Name" source="lastName" />
+        <NumberInput step={1} label="Phone Number" source="phoneNumber" />
       </SimpleForm>
     </Create>
   );
