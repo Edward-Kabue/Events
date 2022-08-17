@@ -14,12 +14,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsNumber,
   IsOptional,
+  ValidateNested,
   IsString,
   IsInt,
-  ValidateNested,
 } from "class-validator";
-import { TicketCreateNestedManyWithoutEventOrganizersInput } from "./TicketCreateNestedManyWithoutEventOrganizersInput";
+import { EventCreateNestedManyWithoutEventOrganizersInput } from "./EventCreateNestedManyWithoutEventOrganizersInput";
 import { Type } from "class-transformer";
+import { TicketCreateNestedManyWithoutEventOrganizersInput } from "./TicketCreateNestedManyWithoutEventOrganizersInput";
 @InputType()
 class EventOrganizerCreateInput {
   @ApiProperty({
@@ -32,6 +33,18 @@ class EventOrganizerCreateInput {
     nullable: true,
   })
   bankAccount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventCreateNestedManyWithoutEventOrganizersInput,
+  })
+  @ValidateNested()
+  @Type(() => EventCreateNestedManyWithoutEventOrganizersInput)
+  @IsOptional()
+  @Field(() => EventCreateNestedManyWithoutEventOrganizersInput, {
+    nullable: true,
+  })
+  events?: EventCreateNestedManyWithoutEventOrganizersInput;
 
   @ApiProperty({
     required: false,

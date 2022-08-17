@@ -12,7 +12,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "User",
     "action": "read:own",
     "attributes": "*"
@@ -30,7 +30,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
@@ -48,7 +48,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "User",
     "action": "update:any",
     "attributes": "*"
@@ -66,7 +66,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
@@ -84,189 +84,21 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "User",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
-    "resource": "EventOrganizer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "EventOrganizer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "EventOrganizer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "EventOrganizer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "EventOrganizer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Customer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "Customer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Customer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Customer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "Customer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Customer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Customer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
     "role": "admin",
     "resource": "Customer",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Customer",
     "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Customer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "Customer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Customer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Customer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "Customer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Customer",
-    "action": "read:any",
     "attributes": "*"
   },
   {
@@ -282,7 +114,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Ticket",
     "action": "read:own",
     "attributes": "*"
@@ -300,7 +132,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Ticket",
     "action": "create:any",
     "attributes": "*"
@@ -318,7 +150,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Ticket",
     "action": "update:any",
     "attributes": "*"
@@ -336,7 +168,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Ticket",
     "action": "delete:any",
     "attributes": "*"
@@ -354,8 +186,98 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Customer",
     "resource": "Ticket",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "manager",
+    "resource": "Event",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Event",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "Customer",
+    "resource": "Event",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "manager",
+    "resource": "Event",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Event",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Customer",
+    "resource": "Event",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "manager",
+    "resource": "Event",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Event",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Customer",
+    "resource": "Event",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "manager",
+    "resource": "Event",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Event",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Customer",
+    "resource": "Event",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "manager",
+    "resource": "Event",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Event",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Customer",
+    "resource": "Event",
     "action": "read:any",
     "attributes": "*"
   }
