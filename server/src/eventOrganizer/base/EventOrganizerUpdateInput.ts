@@ -11,27 +11,34 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsNumber,
-  IsOptional,
-  IsString,
-  IsInt,
-  ValidateNested,
-} from "class-validator";
-import { TicketUpdateManyWithoutEventOrganizersInput } from "./TicketUpdateManyWithoutEventOrganizersInput";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
+import { EventUpdateManyWithoutEventOrganizersInput } from "./EventUpdateManyWithoutEventOrganizersInput";
 import { Type } from "class-transformer";
+import { TicketUpdateManyWithoutEventOrganizersInput } from "./TicketUpdateManyWithoutEventOrganizersInput";
 @InputType()
 class EventOrganizerUpdateInput {
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  bankAccount?: number | null;
+  email?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventUpdateManyWithoutEventOrganizersInput,
+  })
+  @ValidateNested()
+  @Type(() => EventUpdateManyWithoutEventOrganizersInput)
+  @IsOptional()
+  @Field(() => EventUpdateManyWithoutEventOrganizersInput, {
+    nullable: true,
+  })
+  events?: EventUpdateManyWithoutEventOrganizersInput;
 
   @ApiProperty({
     required: false,
@@ -42,7 +49,7 @@ class EventOrganizerUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstname?: string | null;
+  firstName?: string | null;
 
   @ApiProperty({
     required: false,
@@ -53,18 +60,18 @@ class EventOrganizerUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastname?: string | null;
+  lastName?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  phoneNumber?: number | null;
+  payments?: string | null;
 
   @ApiProperty({
     required: false,
@@ -77,5 +84,16 @@ class EventOrganizerUpdateInput {
     nullable: true,
   })
   tickets?: TicketUpdateManyWithoutEventOrganizersInput;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username?: string | null;
 }
 export { EventOrganizerUpdateInput };
