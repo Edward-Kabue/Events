@@ -8,7 +8,7 @@ export const ROLES = [
     displayName: "Admin",
   },
   {
-    name: "user",
-    displayName: "User",
+    name: "Customer",
+    displayName: "Customer",
   },
 ];

@@ -21,6 +21,10 @@ import { TicketList } from "./ticket/TicketList";
 import { TicketCreate } from "./ticket/TicketCreate";
 import { TicketEdit } from "./ticket/TicketEdit";
 import { TicketShow } from "./ticket/TicketShow";
+import { EventList } from "./event/EventList";
+import { EventCreate } from "./event/EventCreate";
+import { EventEdit } from "./event/EventEdit";
+import { EventShow } from "./event/EventShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={TicketEdit}
           create={TicketCreate}
           show={TicketShow}
+        />
+        <Resource
+          name="Event"
+          list={EventList}
+          edit={EventEdit}
+          create={EventCreate}
+          show={EventShow}
         />
       </Admin>
     </div>
