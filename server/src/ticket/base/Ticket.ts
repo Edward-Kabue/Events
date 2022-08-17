@@ -11,9 +11,10 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
+import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { EventOrganizer } from "../../eventOrganizer/base/EventOrganizer";
+import { Event } from "../../event/base/Event";
 @ObjectType()
 class Ticket {
   @ApiProperty({
@@ -26,12 +27,23 @@ class Ticket {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  eventId!: string | null;
+
+  @ApiProperty({
+    required: false,
     type: () => EventOrganizer,
   })
   @ValidateNested()
   @Type(() => EventOrganizer)
   @IsOptional()
-  eventId?: EventOrganizer | null;
+  eventOrganizer?: EventOrganizer | null;
 
   @ApiProperty({
     required: true,
@@ -40,6 +52,15 @@ class Ticket {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => Event,
+  })
+  @ValidateNested()
+  @Type(() => Event)
+  @IsOptional()
+  price?: Event | null;
 
   @ApiProperty({
     required: true,

@@ -1,5 +1,8 @@
 import { EventOrganizerWhereUniqueInput } from "../eventOrganizer/EventOrganizerWhereUniqueInput";
+import { EventWhereUniqueInput } from "../event/EventWhereUniqueInput";
 
 export type TicketUpdateInput = {
-  eventId?: EventOrganizerWhereUniqueInput | null;
+  eventId?: string | null;
+  eventOrganizer?: EventOrganizerWhereUniqueInput | null;
+  price?: EventWhereUniqueInput | null;
 };
