@@ -11,12 +11,25 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EventOrganizerWhereUniqueInput } from "../../eventOrganizer/base/EventOrganizerWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional, ValidateNested } from "class-validator";
+import { EventOrganizerWhereUniqueInput } from "../../eventOrganizer/base/EventOrganizerWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 @InputType()
 class TicketWhereInput {
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  eventId?: StringNullableFilter;
+
   @ApiProperty({
     required: false,
     type: () => EventOrganizerWhereUniqueInput,
@@ -27,7 +40,7 @@ class TicketWhereInput {
   @Field(() => EventOrganizerWhereUniqueInput, {
     nullable: true,
   })
-  eventId?: EventOrganizerWhereUniqueInput;
+  eventOrganizer?: EventOrganizerWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -39,5 +52,17 @@ class TicketWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  price?: EventWhereUniqueInput;
 }
 export { TicketWhereInput };

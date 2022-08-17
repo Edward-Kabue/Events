@@ -2,7 +2,9 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type TicketOrderByInput = {
   createdAt?: SortOrder;
-  eventIdId?: SortOrder;
+  eventId?: SortOrder;
+  eventOrganizerId?: SortOrder;
   id?: SortOrder;
+  priceId?: SortOrder;
   updatedAt?: SortOrder;
 };
