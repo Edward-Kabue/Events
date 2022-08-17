@@ -25,6 +25,8 @@ import { DeleteEventOrganizerArgs } from "./DeleteEventOrganizerArgs";
 import { EventOrganizerFindManyArgs } from "./EventOrganizerFindManyArgs";
 import { EventOrganizerFindUniqueArgs } from "./EventOrganizerFindUniqueArgs";
 import { EventOrganizer } from "./EventOrganizer";
+import { EventFindManyArgs } from "../../event/base/EventFindManyArgs";
+import { Event } from "../../event/base/Event";
 import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
 import { Ticket } from "../../ticket/base/Ticket";
 import { EventOrganizerService } from "../eventOrganizer.service";
@@ -146,6 +148,26 @@ export class EventOrganizerResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Event])
+  @nestAccessControl.UseRoles({
+    resource: "Event",
+    action: "read",
+    possession: "any",
+  })
+  async events(
+    @graphql.Parent() parent: EventOrganizer,
+    @graphql.Args() args: EventFindManyArgs
+  ): Promise<Event[]> {
+    const results = await this.service.findEvents(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

@@ -11,29 +11,12 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsNumber,
-  IsOptional,
-  IsDate,
-  IsString,
-  IsInt,
-  ValidateNested,
-} from "class-validator";
+import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
+import { Event } from "../../event/base/Event";
 import { Ticket } from "../../ticket/base/Ticket";
 @ObjectType()
 class EventOrganizer {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  bankAccount!: number | null;
-
   @ApiProperty({
     required: true,
   })
@@ -51,7 +34,27 @@ class EventOrganizer {
   @Field(() => String, {
     nullable: true,
   })
-  firstname!: string | null;
+  email!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Event],
+  })
+  @ValidateNested()
+  @Type(() => Event)
+  @IsOptional()
+  events?: Array<Event>;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  firstName!: string | null;
 
   @ApiProperty({
     required: true,
@@ -70,18 +73,18 @@ class EventOrganizer {
   @Field(() => String, {
     nullable: true,
   })
-  lastname!: string | null;
+  lastName!: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  phoneNumber!: number | null;
+  payments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -99,5 +102,16 @@ class EventOrganizer {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username!: string | null;
 }
 export { EventOrganizer };

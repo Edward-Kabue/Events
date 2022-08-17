@@ -27,6 +27,9 @@ import { EventOrganizerWhereUniqueInput } from "./EventOrganizerWhereUniqueInput
 import { EventOrganizerFindManyArgs } from "./EventOrganizerFindManyArgs";
 import { EventOrganizerUpdateInput } from "./EventOrganizerUpdateInput";
 import { EventOrganizer } from "./EventOrganizer";
+import { EventFindManyArgs } from "../../event/base/EventFindManyArgs";
+import { Event } from "../../event/base/Event";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
 import { Ticket } from "../../ticket/base/Ticket";
 import { TicketWhereUniqueInput } from "../../ticket/base/TicketWhereUniqueInput";
@@ -53,13 +56,14 @@ export class EventOrganizerControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
@@ -79,13 +83,14 @@ export class EventOrganizerControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
@@ -106,13 +111,14 @@ export class EventOrganizerControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
         updatedAt: true,
+        username: true,
       },
     });
     if (result === null) {
@@ -142,13 +148,14 @@ export class EventOrganizerControllerBase {
         where: params,
         data: data,
         select: {
-          bankAccount: true,
           createdAt: true,
-          firstname: true,
+          email: true,
+          firstName: true,
           id: true,
-          lastname: true,
-          phoneNumber: true,
+          lastName: true,
+          payments: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -177,13 +184,14 @@ export class EventOrganizerControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          bankAccount: true,
           createdAt: true,
-          firstname: true,
+          email: true,
+          firstName: true,
           id: true,
-          lastname: true,
-          phoneNumber: true,
+          lastName: true,
+          payments: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -194,6 +202,112 @@ export class EventOrganizerControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "Event",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/events")
+  @ApiNestedQuery(EventFindManyArgs)
+  async findManyEvents(
+    @common.Req() request: Request,
+    @common.Param() params: EventOrganizerWhereUniqueInput
+  ): Promise<Event[]> {
+    const query = plainToClass(EventFindManyArgs, request.query);
+    const results = await this.service.findEvents(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        description: true,
+
+        eventOrganizer: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
+        images: true,
+        name: true,
+        price: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "EventOrganizer",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/events")
+  async connectEvents(
+    @common.Param() params: EventOrganizerWhereUniqueInput,
+    @common.Body() body: EventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      events: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "EventOrganizer",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/events")
+  async updateEvents(
+    @common.Param() params: EventOrganizerWhereUniqueInput,
+    @common.Body() body: EventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      events: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "EventOrganizer",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/events")
+  async disconnectEvents(
+    @common.Param() params: EventOrganizerWhereUniqueInput,
+    @common.Body() body: EventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      events: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
@@ -213,14 +327,22 @@ export class EventOrganizerControllerBase {
       ...query,
       select: {
         createdAt: true,
+        eventId: true,
 
-        eventId: {
+        eventOrganizer: {
           select: {
             id: true,
           },
         },
 
         id: true,
+
+        price: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
