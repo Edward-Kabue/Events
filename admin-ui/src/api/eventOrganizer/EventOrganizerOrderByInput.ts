@@ -1,11 +1,14 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type EventOrganizerOrderByInput = {
-  bankAccount?: SortOrder;
   createdAt?: SortOrder;
-  firstname?: SortOrder;
+  email?: SortOrder;
+  events?: SortOrder;
+  firstName?: SortOrder;
   id?: SortOrder;
-  lastname?: SortOrder;
-  phoneNumber?: SortOrder;
+  lastName?: SortOrder;
+  payments?: SortOrder;
+  tickets?: SortOrder;
   updatedAt?: SortOrder;
+  username?: SortOrder;
 };

@@ -11,42 +11,54 @@ import { EventOrganizerService } from "../eventOrganizer.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  bankAccount: 42.42,
   createdAt: new Date(),
-  firstname: "exampleFirstname",
+  email: "exampleEmail",
+  events: "exampleEvents",
+  firstName: "exampleFirstName",
   id: "exampleId",
-  lastname: "exampleLastname",
-  phoneNumber: 42,
+  lastName: "exampleLastName",
+  payments: "examplePayments",
+  tickets: 42,
   updatedAt: new Date(),
+  username: "exampleUsername",
 };
 const CREATE_RESULT = {
-  bankAccount: 42.42,
   createdAt: new Date(),
-  firstname: "exampleFirstname",
+  email: "exampleEmail",
+  events: "exampleEvents",
+  firstName: "exampleFirstName",
   id: "exampleId",
-  lastname: "exampleLastname",
-  phoneNumber: 42,
+  lastName: "exampleLastName",
+  payments: "examplePayments",
+  tickets: 42,
   updatedAt: new Date(),
+  username: "exampleUsername",
 };
 const FIND_MANY_RESULT = [
   {
-    bankAccount: 42.42,
     createdAt: new Date(),
-    firstname: "exampleFirstname",
+    email: "exampleEmail",
+    events: "exampleEvents",
+    firstName: "exampleFirstName",
     id: "exampleId",
-    lastname: "exampleLastname",
-    phoneNumber: 42,
+    lastName: "exampleLastName",
+    payments: "examplePayments",
+    tickets: 42,
     updatedAt: new Date(),
+    username: "exampleUsername",
   },
 ];
 const FIND_ONE_RESULT = {
-  bankAccount: 42.42,
   createdAt: new Date(),
-  firstname: "exampleFirstname",
+  email: "exampleEmail",
+  events: "exampleEvents",
+  firstName: "exampleFirstName",
   id: "exampleId",
-  lastname: "exampleLastname",
-  phoneNumber: 42,
+  lastName: "exampleLastName",
+  payments: "examplePayments",
+  tickets: 42,
   updatedAt: new Date(),
+  username: "exampleUsername",
 };
 
 const service = {

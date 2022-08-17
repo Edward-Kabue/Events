@@ -1,9 +1,9 @@
-import { TicketUpdateManyWithoutEventOrganizersInput } from "./TicketUpdateManyWithoutEventOrganizersInput";
-
 export type EventOrganizerUpdateInput = {
-  bankAccount?: number | null;
-  firstname?: string | null;
-  lastname?: string | null;
-  phoneNumber?: number | null;
-  tickets?: TicketUpdateManyWithoutEventOrganizersInput;
+  email?: string | null;
+  events?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  payments?: string | null;
+  tickets?: number | null;
+  username?: string | null;
 };

@@ -1,14 +1,14 @@
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
-import { TicketListRelationFilter } from "../ticket/TicketListRelationFilter";
 
 export type EventOrganizerWhereInput = {
-  bankAccount?: FloatNullableFilter;
-  firstname?: StringNullableFilter;
+  email?: StringNullableFilter;
+  events?: StringNullableFilter;
+  firstName?: StringNullableFilter;
   id?: StringFilter;
-  lastname?: StringNullableFilter;
-  phoneNumber?: IntNullableFilter;
-  tickets?: TicketListRelationFilter;
+  lastName?: StringNullableFilter;
+  payments?: StringNullableFilter;
+  tickets?: IntNullableFilter;
+  username?: StringNullableFilter;
 };

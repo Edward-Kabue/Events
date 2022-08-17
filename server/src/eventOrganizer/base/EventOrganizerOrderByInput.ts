@@ -25,15 +25,6 @@ class EventOrganizerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  bankAccount?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   createdAt?: SortOrder;
 
   @ApiProperty({
@@ -43,7 +34,25 @@ class EventOrganizerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  firstname?: SortOrder;
+  email?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  events?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  firstName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,7 +70,7 @@ class EventOrganizerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastname?: SortOrder;
+  lastName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -70,7 +79,16 @@ class EventOrganizerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  phoneNumber?: SortOrder;
+  payments?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  tickets?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -80,6 +98,15 @@ class EventOrganizerOrderByInput {
     nullable: true,
   })
   updatedAt?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  username?: SortOrder;
 }
 
 export { EventOrganizerOrderByInput };
