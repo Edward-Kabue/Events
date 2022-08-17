@@ -1,9 +1,9 @@
 export type Customer = {
   createdAt: Date;
   email: string | null;
-  firstname: string | null;
+  firstNamr: string | null;
   id: string;
-  lastname: string | null;
+  lastName: string | null;
   phoneNumber: number | null;
   updatedAt: Date;
 };

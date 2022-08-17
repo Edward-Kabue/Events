@@ -38,7 +38,7 @@ class CustomerWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  firstname?: StringNullableFilter;
+  firstNamr?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -60,7 +60,7 @@ class CustomerWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  lastname?: StringNullableFilter;
+  lastName?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

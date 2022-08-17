@@ -1,7 +1,7 @@
 import { EventOrganizer as TEventOrganizer } from "../api/eventOrganizer/EventOrganizer";
 
-export const EVENTORGANIZER_TITLE_FIELD = "firstname";
+export const EVENTORGANIZER_TITLE_FIELD = "firstName";
 
 export const EventOrganizerTitle = (record: TEventOrganizer): string => {
-  return record.firstname || record.id;
+  return record.firstName || record.id;
 };

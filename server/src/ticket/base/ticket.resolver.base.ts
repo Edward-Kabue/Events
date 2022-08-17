@@ -26,6 +26,7 @@ import { TicketFindManyArgs } from "./TicketFindManyArgs";
 import { TicketFindUniqueArgs } from "./TicketFindUniqueArgs";
 import { Ticket } from "./Ticket";
 import { EventOrganizer } from "../../eventOrganizer/base/EventOrganizer";
+import { Event } from "../../event/base/Event";
 import { TicketService } from "../ticket.service";
 
 @graphql.Resolver(() => Ticket)
@@ -96,9 +97,15 @@ export class TicketResolverBase {
       data: {
         ...args.data,
 
-        eventId: args.data.eventId
+        eventOrganizer: args.data.eventOrganizer
           ? {
-              connect: args.data.eventId,
+              connect: args.data.eventOrganizer,
+            }
+          : undefined,
+
+        price: args.data.price
+          ? {
+              connect: args.data.price,
             }
           : undefined,
       },
@@ -121,9 +128,15 @@ export class TicketResolverBase {
         data: {
           ...args.data,
 
-          eventId: args.data.eventId
+          eventOrganizer: args.data.eventOrganizer
             ? {
-                connect: args.data.eventId,
+                connect: args.data.eventOrganizer,
+              }
+            : undefined,
+
+          price: args.data.price
+            ? {
+                connect: args.data.price,
               }
             : undefined,
         },
@@ -166,10 +179,26 @@ export class TicketResolverBase {
     action: "read",
     possession: "any",
   })
-  async eventId(
+  async eventOrganizer(
     @graphql.Parent() parent: Ticket
   ): Promise<EventOrganizer | null> {
-    const result = await this.service.getEventId(parent.id);
+    const result = await this.service.getEventOrganizer(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Event, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Event",
+    action: "read",
+    possession: "any",
+  })
+  async price(@graphql.Parent() parent: Ticket): Promise<Event | null> {
+    const result = await this.service.getPrice(parent.id);
 
     if (!result) {
       return null;
