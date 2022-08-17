@@ -1,12 +1,15 @@
+import { Event } from "../event/Event";
 import { Ticket } from "../ticket/Ticket";
 
 export type EventOrganizer = {
-  bankAccount: number | null;
   createdAt: Date;
-  firstname: string | null;
+  email: string | null;
+  events?: Array<Event>;
+  firstName: string | null;
   id: string;
-  lastname: string | null;
-  phoneNumber: number | null;
+  lastName: string | null;
+  payments: string | null;
   tickets?: Array<Ticket>;
   updatedAt: Date;
+  username: string | null;
 };
