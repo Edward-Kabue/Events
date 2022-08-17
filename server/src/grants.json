@@ -1,361 +1,409 @@
 [
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "User",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "User",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "User",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "User",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "User",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "User",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "User",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "User",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "User",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "Admin",
     "resource": "EventOrganizer",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
+    "role": "Admin",
     "resource": "EventOrganizer",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
+    "role": "Admin",
     "resource": "EventOrganizer",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
+    "role": "Admin",
     "resource": "EventOrganizer",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
+    "role": "Admin",
     "resource": "EventOrganizer",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "EventOrganizer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "EventOrganizer",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Customer",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "Customer",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "Customer",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Customer",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "Customer",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "Customer",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Customer",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "Customer",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "Customer",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Customer",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "Customer",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "Customer",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Customer",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "customer",
     "resource": "Customer",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "Admin",
     "resource": "Customer",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "manager",
+    "role": "organizer",
     "resource": "Ticket",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Ticket",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Ticket",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Ticket",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Ticket",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Ticket",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "customer",
+    "resource": "Ticket",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Ticket",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Ticket",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Event",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "Ticket",
+    "role": "customer",
+    "resource": "Event",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Ticket",
+    "role": "Admin",
+    "resource": "Event",
     "action": "read:own",
     "attributes": "*"
   },
   {
-    "role": "manager",
-    "resource": "Ticket",
+    "role": "organizer",
+    "resource": "Event",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "Ticket",
+    "role": "Admin",
+    "resource": "Event",
     "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Ticket",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Ticket",
+    "role": "organizer",
+    "resource": "Event",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "Ticket",
+    "role": "Admin",
+    "resource": "Event",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Ticket",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Ticket",
+    "role": "organizer",
+    "resource": "Event",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "Ticket",
+    "role": "Admin",
+    "resource": "Event",
     "action": "delete:any",
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Ticket",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "manager",
-    "resource": "Ticket",
+    "role": "organizer",
+    "resource": "Event",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
-    "resource": "Ticket",
+    "role": "customer",
+    "resource": "Event",
     "action": "read:any",
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Ticket",
+    "role": "Admin",
+    "resource": "Event",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Sponsor",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "customer",
+    "resource": "Sponsor",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Sponsor",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Sponsor",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Sponsor",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Sponsor",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Sponsor",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Sponsor",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Sponsor",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "organizer",
+    "resource": "Sponsor",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "customer",
+    "resource": "Sponsor",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "Admin",
+    "resource": "Sponsor",
     "action": "read:any",
     "attributes": "*"
   }
