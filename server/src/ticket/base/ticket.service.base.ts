@@ -10,7 +10,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, Ticket, EventOrganizer } from "@prisma/client";
+import { Prisma, Ticket, EventOrganizer, Event } from "@prisma/client";
 
 export class TicketServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -47,11 +47,19 @@ export class TicketServiceBase {
     return this.prisma.ticket.delete(args);
   }
 
-  async getEventId(parentId: string): Promise<EventOrganizer | null> {
+  async getEventOrganizer(parentId: string): Promise<EventOrganizer | null> {
     return this.prisma.ticket
       .findUnique({
         where: { id: parentId },
       })
-      .eventId();
+      .eventOrganizer();
+  }
+
+  async getPrice(parentId: string): Promise<Event | null> {
+    return this.prisma.ticket
+      .findUnique({
+        where: { id: parentId },
+      })
+      .price();
   }
 }

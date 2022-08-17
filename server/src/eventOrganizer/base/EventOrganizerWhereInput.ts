@@ -11,25 +11,36 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { EventListRelationFilter } from "../../event/base/EventListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { TicketListRelationFilter } from "../../ticket/base/TicketListRelationFilter";
 @InputType()
 class EventOrganizerWhereInput {
   @ApiProperty({
     required: false,
-    type: FloatNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => FloatNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => FloatNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  bankAccount?: FloatNullableFilter;
+  email?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => EventListRelationFilter)
+  @IsOptional()
+  @Field(() => EventListRelationFilter, {
+    nullable: true,
+  })
+  events?: EventListRelationFilter;
 
   @ApiProperty({
     required: false,
@@ -40,7 +51,7 @@ class EventOrganizerWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  firstname?: StringNullableFilter;
+  firstName?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -62,18 +73,18 @@ class EventOrganizerWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  lastname?: StringNullableFilter;
+  lastName?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => IntNullableFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  phoneNumber?: IntNullableFilter;
+  payments?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -86,5 +97,16 @@ class EventOrganizerWhereInput {
     nullable: true,
   })
   tickets?: TicketListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  username?: StringNullableFilter;
 }
 export { EventOrganizerWhereInput };

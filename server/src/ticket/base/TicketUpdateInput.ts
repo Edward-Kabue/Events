@@ -11,11 +11,23 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { EventOrganizerWhereUniqueInput } from "../../eventOrganizer/base/EventOrganizerWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 @InputType()
 class TicketUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  eventId?: string | null;
+
   @ApiProperty({
     required: false,
     type: () => EventOrganizerWhereUniqueInput,
@@ -26,6 +38,18 @@ class TicketUpdateInput {
   @Field(() => EventOrganizerWhereUniqueInput, {
     nullable: true,
   })
-  eventId?: EventOrganizerWhereUniqueInput | null;
+  eventOrganizer?: EventOrganizerWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  price?: EventWhereUniqueInput | null;
 }
 export { TicketUpdateInput };
