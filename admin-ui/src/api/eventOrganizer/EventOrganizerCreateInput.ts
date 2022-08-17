@@ -1,9 +1,9 @@
-import { TicketCreateNestedManyWithoutEventOrganizersInput } from "./TicketCreateNestedManyWithoutEventOrganizersInput";
-
 export type EventOrganizerCreateInput = {
-  bankAccount?: number | null;
-  firstname?: string | null;
-  lastname?: string | null;
-  phoneNumber?: number | null;
-  tickets?: TicketCreateNestedManyWithoutEventOrganizersInput;
+  email?: string | null;
+  events?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  payments?: string | null;
+  tickets?: number | null;
+  username?: string | null;
 };

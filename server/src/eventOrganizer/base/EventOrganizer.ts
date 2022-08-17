@@ -11,29 +11,10 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsNumber,
-  IsOptional,
-  IsDate,
-  IsString,
-  IsInt,
-  ValidateNested,
-} from "class-validator";
+import { IsDate, IsString, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
-import { Ticket } from "../../ticket/base/Ticket";
 @ObjectType()
 class EventOrganizer {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  bankAccount!: number | null;
-
   @ApiProperty({
     required: true,
   })
@@ -51,7 +32,29 @@ class EventOrganizer {
   @Field(() => String, {
     nullable: true,
   })
-  firstname!: string | null;
+  email!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  events!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  firstName!: string | null;
 
   @ApiProperty({
     required: true,
@@ -70,7 +73,18 @@ class EventOrganizer {
   @Field(() => String, {
     nullable: true,
   })
-  lastname!: string | null;
+  lastName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  payments!: string | null;
 
   @ApiProperty({
     required: false,
@@ -81,16 +95,7 @@ class EventOrganizer {
   @Field(() => Number, {
     nullable: true,
   })
-  phoneNumber!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Ticket],
-  })
-  @ValidateNested()
-  @Type(() => Ticket)
-  @IsOptional()
-  tickets?: Array<Ticket>;
+  tickets!: number | null;
 
   @ApiProperty({
     required: true,
@@ -99,5 +104,16 @@ class EventOrganizer {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username!: string | null;
 }
 export { EventOrganizer };

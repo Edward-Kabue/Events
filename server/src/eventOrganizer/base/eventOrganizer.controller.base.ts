@@ -27,9 +27,6 @@ import { EventOrganizerWhereUniqueInput } from "./EventOrganizerWhereUniqueInput
 import { EventOrganizerFindManyArgs } from "./EventOrganizerFindManyArgs";
 import { EventOrganizerUpdateInput } from "./EventOrganizerUpdateInput";
 import { EventOrganizer } from "./EventOrganizer";
-import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
-import { Ticket } from "../../ticket/base/Ticket";
-import { TicketWhereUniqueInput } from "../../ticket/base/TicketWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class EventOrganizerControllerBase {
@@ -53,13 +50,16 @@ export class EventOrganizerControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        events: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
+        tickets: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
@@ -79,13 +79,16 @@ export class EventOrganizerControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        events: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
+        tickets: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
@@ -106,13 +109,16 @@ export class EventOrganizerControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        bankAccount: true,
         createdAt: true,
-        firstname: true,
+        email: true,
+        events: true,
+        firstName: true,
         id: true,
-        lastname: true,
-        phoneNumber: true,
+        lastName: true,
+        payments: true,
+        tickets: true,
         updatedAt: true,
+        username: true,
       },
     });
     if (result === null) {
@@ -142,13 +148,16 @@ export class EventOrganizerControllerBase {
         where: params,
         data: data,
         select: {
-          bankAccount: true,
           createdAt: true,
-          firstname: true,
+          email: true,
+          events: true,
+          firstName: true,
           id: true,
-          lastname: true,
-          phoneNumber: true,
+          lastName: true,
+          payments: true,
+          tickets: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -177,13 +186,16 @@ export class EventOrganizerControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          bankAccount: true,
           createdAt: true,
-          firstname: true,
+          email: true,
+          events: true,
+          firstName: true,
           id: true,
-          lastname: true,
-          phoneNumber: true,
+          lastName: true,
+          payments: true,
+          tickets: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -194,107 +206,5 @@ export class EventOrganizerControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Ticket",
-    action: "read",
-    possession: "any",
-  })
-  @common.Get("/:id/tickets")
-  @ApiNestedQuery(TicketFindManyArgs)
-  async findManyTickets(
-    @common.Req() request: Request,
-    @common.Param() params: EventOrganizerWhereUniqueInput
-  ): Promise<Ticket[]> {
-    const query = plainToClass(TicketFindManyArgs, request.query);
-    const results = await this.service.findTickets(params.id, {
-      ...query,
-      select: {
-        createdAt: true,
-
-        eventId: {
-          select: {
-            id: true,
-          },
-        },
-
-        id: true,
-        updatedAt: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
-    action: "update",
-    possession: "any",
-  })
-  @common.Post("/:id/tickets")
-  async connectTickets(
-    @common.Param() params: EventOrganizerWhereUniqueInput,
-    @common.Body() body: TicketWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      tickets: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
-    action: "update",
-    possession: "any",
-  })
-  @common.Patch("/:id/tickets")
-  async updateTickets(
-    @common.Param() params: EventOrganizerWhereUniqueInput,
-    @common.Body() body: TicketWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      tickets: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "EventOrganizer",
-    action: "update",
-    possession: "any",
-  })
-  @common.Delete("/:id/tickets")
-  async disconnectTickets(
-    @common.Param() params: EventOrganizerWhereUniqueInput,
-    @common.Body() body: TicketWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      tickets: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

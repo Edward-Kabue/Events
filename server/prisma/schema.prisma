@@ -9,7 +9,6 @@ generator client {
 
 model User {
   createdAt DateTime @default(now())
-  email     String?
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?
@@ -20,30 +19,14 @@ model User {
 }
 
 model EventOrganizer {
-  bankAccount Float?
-  createdAt   DateTime @default(now())
-  firstname   String?
-  id          String   @id @default(cuid())
-  lastname    String?
-  phoneNumber Int?
-  tickets     Ticket[]
-  updatedAt   DateTime @updatedAt
-}
-
-model Customer {
-  createdAt   DateTime @default(now())
-  email       String?
-  firstname   String?
-  id          String   @id @default(cuid())
-  lastname    String?
-  phoneNumber Int?
-  updatedAt   DateTime @updatedAt
-}
-
-model Ticket {
-  createdAt DateTime        @default(now())
-  eventId   EventOrganizer? @relation(fields: [eventIdId], references: [id])
-  eventIdId String?
-  id        String          @id @default(cuid())
-  updatedAt DateTime        @updatedAt
+  createdAt DateTime @default(now())
+  email     String?
+  events    String?
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  payments  String?
+  tickets   Int?
+  updatedAt DateTime @updatedAt
+  username  String?
 }

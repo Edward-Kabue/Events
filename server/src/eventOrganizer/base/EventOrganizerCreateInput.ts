@@ -11,27 +11,19 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsNumber,
-  IsOptional,
-  IsString,
-  IsInt,
-  ValidateNested,
-} from "class-validator";
-import { TicketCreateNestedManyWithoutEventOrganizersInput } from "./TicketCreateNestedManyWithoutEventOrganizersInput";
-import { Type } from "class-transformer";
+import { IsString, IsOptional, IsInt } from "class-validator";
 @InputType()
 class EventOrganizerCreateInput {
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  bankAccount?: number | null;
+  email?: string | null;
 
   @ApiProperty({
     required: false,
@@ -42,7 +34,7 @@ class EventOrganizerCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstname?: string | null;
+  events?: string | null;
 
   @ApiProperty({
     required: false,
@@ -53,7 +45,29 @@ class EventOrganizerCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastname?: string | null;
+  firstName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  lastName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  payments?: string | null;
 
   @ApiProperty({
     required: false,
@@ -64,18 +78,17 @@ class EventOrganizerCreateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  phoneNumber?: number | null;
+  tickets?: number | null;
 
   @ApiProperty({
     required: false,
-    type: () => TicketCreateNestedManyWithoutEventOrganizersInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => TicketCreateNestedManyWithoutEventOrganizersInput)
+  @IsString()
   @IsOptional()
-  @Field(() => TicketCreateNestedManyWithoutEventOrganizersInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  tickets?: TicketCreateNestedManyWithoutEventOrganizersInput;
+  username?: string | null;
 }
 export { EventOrganizerCreateInput };

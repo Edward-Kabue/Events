@@ -1,33 +1,23 @@
 import * as React from "react";
-
 import {
   Edit,
   SimpleForm,
   EditProps,
-  NumberInput,
   TextInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  NumberInput,
 } from "react-admin";
-
-import { TicketTitle } from "../ticket/TicketTitle";
 
 export const EventOrganizerEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <NumberInput label="Bank account" source="bankAccount" />
-        <TextInput label="Firstname " source="firstname" />
-        <TextInput label="Lastname" source="lastname" />
-        <NumberInput step={1} label="Phone number" source="phoneNumber" />
-        <ReferenceArrayInput
-          source="tickets"
-          reference="Ticket"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={TicketTitle} />
-        </ReferenceArrayInput>
+        <TextInput label="Email" source="email" type="email" />
+        <TextInput label="Events" source="events" />
+        <TextInput label="First name" source="firstName" />
+        <TextInput label="Last name" source="lastName" />
+        <TextInput label="Payments" source="payments" />
+        <NumberInput step={1} label="Tickets" source="tickets" />
+        <TextInput label="Username" source="username" />
       </SimpleForm>
     </Edit>
   );
