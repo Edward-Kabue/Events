@@ -1,6 +1,6 @@
 export type CustomerUpdateInput = {
   email?: string | null;
-  firstname?: string | null;
-  lastname?: string | null;
+  firstNamr?: string | null;
+  lastName?: string | null;
   phoneNumber?: number | null;
 };

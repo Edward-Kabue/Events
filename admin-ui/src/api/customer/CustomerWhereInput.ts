@@ -4,8 +4,8 @@ import { IntNullableFilter } from "../../util/IntNullableFilter";
 
 export type CustomerWhereInput = {
   email?: StringNullableFilter;
-  firstname?: StringNullableFilter;
+  firstNamr?: StringNullableFilter;
   id?: StringFilter;
-  lastname?: StringNullableFilter;
+  lastName?: StringNullableFilter;
   phoneNumber?: IntNullableFilter;
 };
